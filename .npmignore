@@ -1,0 +1,10 @@
+.prettierrc.json
+rollup*
+src/
+tests/
+.github/
+docs/
+docs-md/
+node_modules/
+package-lock.json
+.rollup.cache
