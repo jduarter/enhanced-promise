@@ -1,6 +1,10 @@
 {
   "name": "@jduarter/enhanced-promise",
   "version": "0.0.1",
+  "typeCoverage": {
+    "atLeast": 96.27,
+    "is": 96.27
+  },
   "description": "Enhanced promises for better code readability",
   "repository": "git@github.com:jduarter/enhanced-promise.git",
   "main": "build/lib.min.js",
