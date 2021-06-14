@@ -30,19 +30,21 @@ const genReject =
       typeof firstArg === 'function' ? firstArg() : firstArg,
       ...restOfArgs,
     ];
-    const customErrorObj = typeof errConstructorArgs[0] === 'object' && errConstructorArgs[0];
-    const err = customErrorObj || new (RejectDefaultErrorClass || Error)(...errConstructorArgs);
+    const customErrorObj =
+      typeof errConstructorArgs[0] === 'object' && errConstructorArgs[0];
+    const err =
+      customErrorObj ||
+      new (RejectDefaultErrorClass || Error)(...errConstructorArgs);
     reject(err);
-    throw new AbortedOp('Operation has been aborted', { originalError: err });
   };
 
 const genRejectIf =
   (reject: RejectFnType): RejectIfFnType =>
   (cond, message, options) => {
     if (!cond) return;
-
     reject(message, options?.details);
     if (options?.post) options.post();
+    throw new AbortedOp('Operation has been aborted');
   };
 
 export const hoc = <R>(
@@ -62,8 +64,9 @@ export const hoc = <R>(
         rejectIf: genRejectIf(reject),
       });
     } catch (err) {
+      console.log('-->  err: ', err);
       if (err instanceof AbortedOp) {
-        // console.log('-> op has been aborted');
+        console.log('-> op has been aborted');
       } else {
         onUncaughtError(err, { reject });
       }
