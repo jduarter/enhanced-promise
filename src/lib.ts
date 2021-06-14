@@ -30,7 +30,8 @@ const genReject =
       typeof firstArg === 'function' ? firstArg() : firstArg,
       ...restOfArgs,
     ];
-    const err = new (RejectDefaultErrorClass || Error)(...errConstructorArgs);
+    const customErrorObj = typeof errConstructorArgs[0] === 'object' && errConstructorArgs[0];
+    const err = customErrorObj || new (RejectDefaultErrorClass || Error)(...errConstructorArgs);
     reject(err);
     throw new AbortedOp('Operation has been aborted', { originalError: err });
   };
