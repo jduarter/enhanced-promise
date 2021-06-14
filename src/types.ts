@@ -4,7 +4,7 @@ export type RejectFnType = (
 
 export type RejectIfFnType = (
   cond: boolean,
-  message: string | (() => string),
+  message: string | Error | (() => (string | Error)),
   options?: {
     post?: null | (() => void);
     details?: Record<string, any>; //@todo-type
