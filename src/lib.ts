@@ -64,9 +64,8 @@ export const hoc = <R>(
         rejectIf: genRejectIf(reject),
       });
     } catch (err) {
-      console.log('-->  err: ', err);
       if (err instanceof AbortedOp) {
-        console.log('-> op has been aborted');
+        // console.log('-> op has been aborted');
       } else {
         onUncaughtError(err, { reject });
       }
