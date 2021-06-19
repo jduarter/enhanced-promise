@@ -81,4 +81,7 @@ export const getEnhancedPromise = <T>(
     err: Error,
     handlers: Pick<EnhancedPromiseHandlersObjType<T>, 'reject'>,
   ) => void,
-) => new Promise<T>(hoc(promiseBodyFn, onUncaughtError));
+  rejectDefaultErrorClass:
+    | (new (...args: any[]) => ThrowableError)
+    | undefined = undefined,
+) => new Promise<T>(hoc(promiseBodyFn, onUncaughtError, rejectDefaultErrorClass));
