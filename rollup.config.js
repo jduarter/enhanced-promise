@@ -6,6 +6,16 @@ import cleanup from 'rollup-plugin-cleanup';
 import analyze from 'rollup-plugin-analyzer';
 import license from 'rollup-plugin-license';
 
+const path = require('path');
+
+const LICENSE_CFG = {
+  banner: {
+    content: {
+      file: path.join(__dirname, 'LICENSE'),
+    },
+  },
+};
+
 export default [
   {
     input: 'src/index.ts',
